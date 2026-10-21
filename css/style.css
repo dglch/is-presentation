@@ -1,0 +1,599 @@
+:root {
+      --bg-main: #070a12;
+      --bg-surface: #0e1424;
+      --bg-surface-elevated: #151e36;
+      --border-color: #243257;
+      --border-accent: #00e5ff;
+      --neon-cyan: #00e5ff;
+      --neon-green: #10f074;
+      --neon-amber: #ffb703;
+      --neon-red: #ff3355;
+      --neon-purple: #a855f7;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --college-gold: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Cyber Tech Headings */
+    h1, h2, h3, h4, .tech-font {
+      font-family: 'Chakra Petch', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .code-font {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Top HUD / College Header */
+    header.hud {
+      background: rgba(10, 15, 29, 0.95);
+      border-bottom: 2px solid var(--border-color);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    .college-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .college-badge {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 2px solid var(--college-gold);
+      color: #fff;
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 5px 12px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+    }
+
+    .college-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .college-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      letter-spacing: 0.3px;
+    }
+
+    .college-sub {
+      font-size: 0.72rem;
+      color: var(--neon-cyan);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Status & Team Health */
+    .hud-metrics {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .metric-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .metric-label {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+    }
+
+    .integrity-bar-outer {
+      width: 170px;
+      height: 18px;
+      background: #18090b;
+      border: 2px solid #ff3355;
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .integrity-bar-inner {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #ff3355, #10f074);
+      transition: width 0.35s ease;
+    }
+
+    .integrity-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 4px #000;
+    }
+
+    .xp-pill {
+      background: rgba(168, 85, 247, 0.15);
+      border: 1.5px solid var(--neon-purple);
+      color: #d8b4fe;
+      padding: 4px 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 4px;
+    }
+
+    .hud-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-tool {
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-tool:hover {
+      background: var(--bg-surface-elevated);
+      color: #fff;
+      border-color: var(--neon-cyan);
+    }
+
+    .btn-tool.active {
+      border-color: var(--neon-green);
+      color: var(--neon-green);
+    }
+
+    /* Presentation Screen Canvas */
+    main.viewport {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 24px;
+      background: radial-gradient(circle at 50% 30%, #0d152c 0%, #070a12 70%);
+    }
+
+    .slide-card {
+      width: min(1280px, 94vw);
+      height: min(720px, 84vh);
+      background: var(--bg-surface);
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 229, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      padding: 36px 44px;
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px) scale(0.98);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      overflow-y: auto;
+    }
+
+    .slide-card.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      z-index: 10;
+    }
+
+    /* Slide Headers */
+    .slide-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .stage-tag {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid var(--neon-cyan);
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .time-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--neon-amber);
+      background: rgba(255, 183, 3, 0.1);
+      border: 1px solid rgba(255, 183, 3, 0.4);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .slide-heading {
+      font-size: 1.85rem;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .slide-lead {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    /* Content Layouts */
+    .layout-split {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      flex: 1;
+      align-items: stretch;
+    }
+
+    .layout-triad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      flex: 1;
+      align-items: stretch;
+    }
+
+    /* Cards & Panels */
+    .tech-panel {
+      background: var(--bg-surface-elevated);
+      border: 1.5px solid var(--border-color);
+      border-radius: 6px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .tech-panel.accent {
+      border-color: rgba(0, 229, 255, 0.5);
+      box-shadow: 0 0 25px rgba(0, 229, 255, 0.08);
+    }
+
+    .tech-panel.danger-zone {
+      border-color: rgba(255, 51, 85, 0.5);
+      background: linear-gradient(180deg, #1c1524 0%, #151e36 100%);
+    }
+
+    .tech-panel.success-zone {
+      border-color: rgba(16, 240, 116, 0.4);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .panel-header h3 {
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    /* Feature Lists (High Contrast for Meet) */
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+    }
+
+    .feature-list li {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .feature-list li::before {
+      content: '◆';
+      position: absolute;
+      left: 2px;
+      color: var(--neon-cyan);
+      font-size: 0.85rem;
+      top: 1px;
+    }
+
+    .feature-list strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .feature-list code {
+      background: #090e1a;
+      border: 1px solid #233152;
+      color: var(--neon-cyan);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+    }
+
+    /* Dilemma & Simulation Interactive Buttons */
+    .dilemma-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--neon-amber);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scenario-desc {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .choices-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-choice {
+      background: #0c1220;
+      border: 1.5px solid #28375c;
+      color: #f8fafc;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 12px 16px;
+      border-radius: 6px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.18s ease;
+    }
+
+    .btn-choice:hover:not(:disabled) {
+      background: #18233d;
+      border-color: var(--neon-cyan);
+      transform: translateX(4px);
+    }
+
+    .choice-badge {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      background: #1e293b;
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-cyan);
+      padding: 4px 8px;
+      border-radius: 3px;
+    }
+
+    .result-alert {
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: 5px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      display: none;
+      animation: slideUp 0.25s forwards;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-alert.danger {
+      background: rgba(255, 51, 85, 0.15);
+      border: 1.5px solid var(--neon-red);
+      color: #ffcbd3;
+    }
+
+    .result-alert.success {
+      background: rgba(16, 240, 116, 0.15);
+      border: 1.5px solid var(--neon-green);
+      color: #d1fae5;
+    }
+
+    /* Takeaway Pill / Loot */
+    .takeaway-bar {
+      margin-top: auto;
+      background: #090e1a;
+      border: 1px solid #1e293b;
+      border-left: 4px solid var(--neon-green);
+      padding: 12px 18px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .takeaway-icon {
+      font-size: 1.3rem;
+    }
+
+    .takeaway-text h4 {
+      font-size: 0.82rem;
+      color: var(--neon-green);
+      margin-bottom: 2px;
+    }
+
+    .takeaway-text p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Bottom Controller */
+    footer.control-dock {
+      background: rgba(10, 15, 29, 0.95);
+      border-top: 2px solid var(--border-color);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .nav-btn {
+      background: var(--bg-surface-elevated);
+      border: 1.5px solid #28375c;
+      color: #fff;
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 10px 22px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      border-color: var(--neon-cyan);
+      background: #1b2848;
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.3);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      border-color: #1e293b;
+    }
+
+    .dock-center {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* Title Slide Hero */
+    .hero-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: auto 0;
+      gap: 20px;
+    }
+
+    .hero-tags {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-btn-start {
+      margin-top: 16px;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      border: 2px solid var(--neon-cyan);
+      color: #fff;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 16px 36px;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.35);
+      transition: all 0.2s;
+    }
+
+    .hero-btn-start:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.6);
+    }
+
+    /* Print styling */
+    @media print {
+      body {
+        overflow: visible;
+        background: #fff !important;
+        color: #000 !important;
+      }
+      header.hud, footer.control-dock, .hud-buttons {
+        display: none !important;
+      }
+      main.viewport {
+        padding: 0;
+        background: #fff !important;
+      }
+      .slide-card {
+        position: relative !important;
+        opacity: 1 !important;
+        transform: none !important;
+        display: block !important;
+        page-break-after: always;
+        width: 100% !important;
+        height: 100vh !important;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        background: #fff !important;
+        color: #000 !important;
+        padding: 30px !important;
+      }
+      .slide-heading { color: #000 !important; }
+      .tech-panel { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; color: #000 !important; }
+      .btn-choice { background: #f1f5f9 !important; color: #000 !important; border: 1px solid #94a3b8 !important; }
+    }
